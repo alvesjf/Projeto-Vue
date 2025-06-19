@@ -30,13 +30,13 @@
             <div class="col-md-6">
                 <div class="row mt-2">
                     <div class="col">
-                        <img :src="pao[0]" alt="">
-                        <img :src="alface" alt="">
-                        <img :src="ketchup" alt="">
-                        <img :src="mostarda" alt="">
-                        <img :src="maionese" alt="">
-                        <img :src="hamburgue" alt="">
-                        <img :src="pao[1]" alt="">
+                        <img :src="pao[0]">
+                        <img :src="alface">
+                        <img :src="ketchup">
+                        <img :src="mostarda">
+                        <img :src="maionese">
+                        <img :src="hamburgue">
+                        <img :src="pao[1]">
                     </div>
                 </div>
             </div>
@@ -45,22 +45,19 @@
                      <div class="row mt-2">
                         <div class="col">
                             <div class="card">
-                                <div class="card-header">
-                                    * * * TIPO DO PÃO * * *
-                                </div>
+                                <div class="card-header">* * * TIPO DO PÃO * * *</div>
+                                <div class="card-body">                                                                        
+                                    {{inputTipoPao}}               
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio"> 
+                                        <input class="form-check-input" type="radio" value="gergelim" v-model="inputTipoPao"> 
                                         <label class="form-check-label">GERGELIM</label>
                                     </div>
                                     
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio"> 
+                                        <input class="form-check-input" type="radio" value="australiano" v-model="inputTipoPao"> 
                                         <label class="form-check-label">AUSTRALIANO</label>
                                     </div>
-                                    <!--
-                                <div class="card-body">                                
-                            </div>
-                                -->
+                                </div>    
                         </div>
                     </div>
                 </div>
@@ -136,9 +133,20 @@
     <script>
         const vm = new Vue({
             el: '#app',
+            data: {
+                inputTipoPao: ''
+            },
+
             computed: {
                 pao() {
-                    return['imagens/padrao/pao_superior.png" alt=','imagens/padrao/pao_inferior.png']
+                    switch(this.inputTipoPao){
+                        case 'gergelim': 
+                            return ['imagens/pao_gergelim_superior.png', 'imagens/pao_gergelim_inferior.png']
+                        case 'australiano':
+                            return ['imagens/pao_australiano_superior.png' , 'imagens/pao_australiano_superior.png']                    
+                        default:
+                            return [' imagens/padrao/pao_superior.png' , 'imagens/padrao/pao_inferior.png' ]
+                        }
                 },
                 alface(){
                     return 'imagens/padrao/alface.png'                
