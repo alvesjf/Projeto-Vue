@@ -41,7 +41,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                
+                
+                <div class="col-md-6" v-if="etapa == 1" >
                     <!-- TIPO DO PÃO -->
                     <div class="row mt-2">
                         <div class="col">
@@ -60,7 +62,7 @@
                             </div>
                         </div>
                     </div>
-                    
+            
                     <!-- SALADAS -->
                     <div class="row mt-2">
                         <div class="col">
@@ -130,6 +132,29 @@
                     </div>
 
                 </div>
+
+                <div class="col-md-6" v-if="etapa == 2" >
+                    <div class="row mt-2">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-header">INFORMES SEUS DADOS</div>
+                                {{inputNome}} - {{inputEndereco}}
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label class="form-label">Nome</label >
+                                        <input type="text" class="form-control" v-model="inputNome">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Endereço</label >
+                                        <input type="text" class="form-control" v-model="inputEndereco">
+                                    </div>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -143,7 +168,10 @@
                 inputTipoPao: '',
                 inputSaladas: [],
                 inputMolhos: [],
-                inputHamburguer: ''
+                inputHamburguer: '',
+                etapa: 1,
+                inputNome: '',
+                inputEndereco: ''
             },
             computed: {
                 pao() {
@@ -198,6 +226,11 @@
             },
             methods: {
                 fazerPedido(){
+                if(this.inputTipoPao && this.inputHamburguer){
+                    this.etapa = 2
+                }else{
+                    alert (' Reveja seu pedido ! Falta . . . NO MÍNIMO . . 1 PÃO E 1 CARNE !')
+                    }
                     
                 }
             }
